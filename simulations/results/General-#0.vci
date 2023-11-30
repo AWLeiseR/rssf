@@ -1,0 +1,244 @@
+file 34874 1698771823                                           
+version 3
+run General-0-20231031-14:01:44-14948
+attr configname General
+attr datetime 20231031-14:01:44
+attr datetimef 20231031-140144
+attr experiment General
+attr inifile rede2.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network rede02
+attr processid 14948
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path C:/omnetpp-6.0/samples/inet4.5/images
+config network rede02
+config sim-time-limit 20s
+config *.*.wlan.interfaceTableModule "\"\""
+config *.nodo0.mobility.initialX 390m
+config *.nodo0.mobility.initialY 390m
+config *.nodo0.mobility.initialZ 10m
+config *.nodo1.mobility.initialX 420m
+config *.nodo1.mobility.initialY 420m
+config *.nodo1.mobility.initialZ 10m
+config *.nodo2.mobility.initialX 480m
+config *.nodo2.mobility.initialY 480m
+config *.nodo2.mobility.initialZ 10m
+config *.nodo0.app.numero 0
+config *.nodo1.app.numero 1
+config *.nodo2.app.numero 2
+
+vector 0 rede02.nodo0.wlan.radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 1 rede02.nodo1.wlan.radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 2 rede02.nodo2.wlan.radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 3 rede02.nodo0.wlan.radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 4 rede02.nodo1.wlan.radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 5 rede02.nodo2.wlan.radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 6 rede02.nodo0.wlan.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 7 rede02.nodo0.wlan.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 8 rede02.nodo0.wlan.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 9 rede02.nodo0.wlan.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 10 rede02.nodo0.wlan.radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 11 rede02.nodo0.wlan.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 12 rede02.nodo0.wlan.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 13 rede02.nodo0.wlan.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 14 rede02.nodo1.wlan.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 15 rede02.nodo1.wlan.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 16 rede02.nodo1.wlan.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 17 rede02.nodo1.wlan.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 18 rede02.nodo1.wlan.radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 19 rede02.nodo1.wlan.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 20 rede02.nodo1.wlan.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 21 rede02.nodo1.wlan.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 22 rede02.nodo2.wlan.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 23 rede02.nodo2.wlan.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 24 rede02.nodo2.wlan.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 25 rede02.nodo2.wlan.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 26 rede02.nodo2.wlan.radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 27 rede02.nodo2.wlan.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 28 rede02.nodo2.wlan.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 29 rede02.nodo2.wlan.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+0	8093 380 0 412 0 19.00176 23 0 3 52 134
+1	8473 345 0 389 0 18.0024 21 0 3 47 121
+2	8818 345 0 411 0 19.00176 21 0 3 47 121
+3	9163 1188 0 412 0 19.00176 55 0 3 79 181
+4	10351 1223 0 416 0 19.001760283039 56 0 3 84 194
+5	11574 1199 0 411 0 19.00176 55 0 3 82 190
+6	12773 111 2 400 1 19 10 0 0 0 0
+7	12884 2601 2 422 0.1 20 200 0 0 0 0
+8	15485 292 2 404 1 19.001088 20 0 1 10 10
+9	15777 292 2 404 1 19.001088 20 0 0 0 0
+10	16069 737 4 412 1.001408 19.00176 40 0 2 40 60
+11	16806 261 4 404 1.001408 19.001088 10 0.000128 0.006976 0.019264 7.1888896e-05
+12	17067 191 4 404 1.001408 19.001088 10 0 0 0 0
+13	17258 2801 4 422 0.1 20 200 0 0 0 0
+14	20059 124 17 421 2 20 10 0 0 0 0
+15	20183 2821 17 421 0.1 20 200 0 0 0 0
+16	23004 298 17 421 2 20 19 0 1 10 10
+17	23302 298 17 421 2 20 19 0 0 0 0
+18	23600 663 19 389 2.001728 18.0024 36 0 2 36 54
+19	24263 237 19 385 2.001728 18.001728 9 0.000128 0.002368 0.012992 2.3760896e-05
+20	24500 174 19 385 2.001728 18.001728 9 0 0 0 0
+21	24674 2821 19 422 0.1 20 200 0 0 0 0
+22	27495 111 33 399 3 19 9 0 0 0 0
+23	27606 2811 33 422 0.1 20 200 0 0 0 0
+24	30417 285 33 403 3 19.001088 18 0 1 9 9
+25	30702 285 33 403 3 19.001088 18 0 0 0 0
+26	30987 663 36 411 3.000128 19.00176 36 0 2 36 54
+27	31650 237 36 403 3.000128 19.001088 9 0.000128 0.002048 0.007552 1.0182656e-05
+28	31887 174 36 403 3.000128 19.001088 9 0 0 0 0
+29	32061 2811 36 422 0.1 20 200 0 0 0 0
+
