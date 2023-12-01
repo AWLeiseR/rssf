@@ -177,7 +177,9 @@ void Pacote::copy(const Pacote& other)
 {
     this->nodo_origem = other.nodo_origem;
     this->numero_msg = other.numero_msg;
-    this->valor = other.valor;
+    this->temperature = other.temperature;
+    this->moisture = other.moisture;
+    this->air = other.air;
 }
 
 void Pacote::parsimPack(omnetpp::cCommBuffer *b) const
@@ -185,7 +187,9 @@ void Pacote::parsimPack(omnetpp::cCommBuffer *b) const
     ::inet::Packet::parsimPack(b);
     doParsimPacking(b,this->nodo_origem);
     doParsimPacking(b,this->numero_msg);
-    doParsimPacking(b,this->valor);
+    doParsimPacking(b,this->temperature);
+    doParsimPacking(b,this->moisture);
+    doParsimPacking(b,this->air);
 }
 
 void Pacote::parsimUnpack(omnetpp::cCommBuffer *b)
@@ -193,7 +197,9 @@ void Pacote::parsimUnpack(omnetpp::cCommBuffer *b)
     ::inet::Packet::parsimUnpack(b);
     doParsimUnpacking(b,this->nodo_origem);
     doParsimUnpacking(b,this->numero_msg);
-    doParsimUnpacking(b,this->valor);
+    doParsimUnpacking(b,this->temperature);
+    doParsimUnpacking(b,this->moisture);
+    doParsimUnpacking(b,this->air);
 }
 
 int Pacote::getNodo_origem() const
@@ -216,14 +222,34 @@ void Pacote::setNumero_msg(int numero_msg)
     this->numero_msg = numero_msg;
 }
 
-double Pacote::getValor() const
+double Pacote::getTemperature() const
 {
-    return this->valor;
+    return this->temperature;
 }
 
-void Pacote::setValor(double valor)
+void Pacote::setTemperature(double temperature)
 {
-    this->valor = valor;
+    this->temperature = temperature;
+}
+
+double Pacote::getMoisture() const
+{
+    return this->moisture;
+}
+
+void Pacote::setMoisture(double moisture)
+{
+    this->moisture = moisture;
+}
+
+double Pacote::getAir() const
+{
+    return this->air;
+}
+
+void Pacote::setAir(double air)
+{
+    this->air = air;
 }
 
 class PacoteDescriptor : public omnetpp::cClassDescriptor
@@ -233,7 +259,9 @@ class PacoteDescriptor : public omnetpp::cClassDescriptor
     enum FieldConstants {
         FIELD_nodo_origem,
         FIELD_numero_msg,
-        FIELD_valor,
+        FIELD_temperature,
+        FIELD_moisture,
+        FIELD_air,
     };
   public:
     PacoteDescriptor();
@@ -300,7 +328,7 @@ const char *PacoteDescriptor::getProperty(const char *propertyName) const
 int PacoteDescriptor::getFieldCount() const
 {
     omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
-    return base ? 3+base->getFieldCount() : 3;
+    return base ? 5+base->getFieldCount() : 5;
 }
 
 unsigned int PacoteDescriptor::getFieldTypeFlags(int field) const
@@ -314,9 +342,11 @@ unsigned int PacoteDescriptor::getFieldTypeFlags(int field) const
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,    // FIELD_nodo_origem
         FD_ISEDITABLE,    // FIELD_numero_msg
-        FD_ISEDITABLE,    // FIELD_valor
+        FD_ISEDITABLE,    // FIELD_temperature
+        FD_ISEDITABLE,    // FIELD_moisture
+        FD_ISEDITABLE,    // FIELD_air
     };
-    return (field >= 0 && field < 3) ? fieldTypeFlags[field] : 0;
+    return (field >= 0 && field < 5) ? fieldTypeFlags[field] : 0;
 }
 
 const char *PacoteDescriptor::getFieldName(int field) const
@@ -330,9 +360,11 @@ const char *PacoteDescriptor::getFieldName(int field) const
     static const char *fieldNames[] = {
         "nodo_origem",
         "numero_msg",
-        "valor",
+        "temperature",
+        "moisture",
+        "air",
     };
-    return (field >= 0 && field < 3) ? fieldNames[field] : nullptr;
+    return (field >= 0 && field < 5) ? fieldNames[field] : nullptr;
 }
 
 int PacoteDescriptor::findField(const char *fieldName) const
@@ -341,7 +373,9 @@ int PacoteDescriptor::findField(const char *fieldName) const
     int baseIndex = base ? base->getFieldCount() : 0;
     if (strcmp(fieldName, "nodo_origem") == 0) return baseIndex + 0;
     if (strcmp(fieldName, "numero_msg") == 0) return baseIndex + 1;
-    if (strcmp(fieldName, "valor") == 0) return baseIndex + 2;
+    if (strcmp(fieldName, "temperature") == 0) return baseIndex + 2;
+    if (strcmp(fieldName, "moisture") == 0) return baseIndex + 3;
+    if (strcmp(fieldName, "air") == 0) return baseIndex + 4;
     return base ? base->findField(fieldName) : -1;
 }
 
@@ -356,9 +390,11 @@ const char *PacoteDescriptor::getFieldTypeString(int field) const
     static const char *fieldTypeStrings[] = {
         "int",    // FIELD_nodo_origem
         "int",    // FIELD_numero_msg
-        "double",    // FIELD_valor
+        "double",    // FIELD_temperature
+        "double",    // FIELD_moisture
+        "double",    // FIELD_air
     };
-    return (field >= 0 && field < 3) ? fieldTypeStrings[field] : nullptr;
+    return (field >= 0 && field < 5) ? fieldTypeStrings[field] : nullptr;
 }
 
 const char **PacoteDescriptor::getFieldPropertyNames(int field) const
@@ -443,7 +479,9 @@ std::string PacoteDescriptor::getFieldValueAsString(omnetpp::any_ptr object, int
     switch (field) {
         case FIELD_nodo_origem: return long2string(pp->getNodo_origem());
         case FIELD_numero_msg: return long2string(pp->getNumero_msg());
-        case FIELD_valor: return double2string(pp->getValor());
+        case FIELD_temperature: return double2string(pp->getTemperature());
+        case FIELD_moisture: return double2string(pp->getMoisture());
+        case FIELD_air: return double2string(pp->getAir());
         default: return "";
     }
 }
@@ -462,7 +500,9 @@ void PacoteDescriptor::setFieldValueAsString(omnetpp::any_ptr object, int field,
     switch (field) {
         case FIELD_nodo_origem: pp->setNodo_origem(string2long(value)); break;
         case FIELD_numero_msg: pp->setNumero_msg(string2long(value)); break;
-        case FIELD_valor: pp->setValor(string2double(value)); break;
+        case FIELD_temperature: pp->setTemperature(string2double(value)); break;
+        case FIELD_moisture: pp->setMoisture(string2double(value)); break;
+        case FIELD_air: pp->setAir(string2double(value)); break;
         default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'Pacote'", field);
     }
 }
@@ -479,7 +519,9 @@ omnetpp::cValue PacoteDescriptor::getFieldValue(omnetpp::any_ptr object, int fie
     switch (field) {
         case FIELD_nodo_origem: return pp->getNodo_origem();
         case FIELD_numero_msg: return pp->getNumero_msg();
-        case FIELD_valor: return pp->getValor();
+        case FIELD_temperature: return pp->getTemperature();
+        case FIELD_moisture: return pp->getMoisture();
+        case FIELD_air: return pp->getAir();
         default: throw omnetpp::cRuntimeError("Cannot return field %d of class 'Pacote' as cValue -- field index out of range?", field);
     }
 }
@@ -498,7 +540,9 @@ void PacoteDescriptor::setFieldValue(omnetpp::any_ptr object, int field, int i, 
     switch (field) {
         case FIELD_nodo_origem: pp->setNodo_origem(omnetpp::checked_int_cast<int>(value.intValue())); break;
         case FIELD_numero_msg: pp->setNumero_msg(omnetpp::checked_int_cast<int>(value.intValue())); break;
-        case FIELD_valor: pp->setValor(value.doubleValue()); break;
+        case FIELD_temperature: pp->setTemperature(value.doubleValue()); break;
+        case FIELD_moisture: pp->setMoisture(value.doubleValue()); break;
+        case FIELD_air: pp->setAir(value.doubleValue()); break;
         default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'Pacote'", field);
     }
 }

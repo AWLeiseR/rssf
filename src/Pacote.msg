@@ -7,5 +7,8 @@ cplusplus {{
 packet Pacote extends inet::Packet {    
     int nodo_origem;
     int numero_msg;
-    double valor;
+    //double valor;
+    double temperature;
+    double moisture;
+    double air;
 }

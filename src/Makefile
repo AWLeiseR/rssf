@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for RSSF01
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -KINET4_5_PROJ=C:/omnetpp-6.0/samples/inet4.5 -DINET_IMPORT -I$$\(INET4_5_PROJ\)/src -L$$\(INET4_5_PROJ\)/src -lINET$$\(D\)
+#  opp_makemake -f --deep -KINET4_5_PROJ=../../inet4.5 -DINET_IMPORT -I$$\(INET4_5_PROJ\)/src -L$$\(INET4_5_PROJ\)/src -lINET$$\(D\)
 #
 
 # Name of target to be created (-o option)
@@ -43,7 +43,7 @@ MSGFILES = \
 SMFILES =
 
 # Other makefile variables (-K)
-INET4_5_PROJ=C:/omnetpp-6.0/samples/inet4.5
+INET4_5_PROJ=../../inet4.5
 
 #------------------------------------------------------------------------------
 
@@ -105,7 +105,9 @@ $O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile $(CONFIGFILE)
 
 .PHONY: all clean cleanall depend msgheaders smheaders
 
-.SUFFIXES: .cc
+# disabling all implicit rules
+.SUFFIXES :
+.PRECIOUS : %_m.h %_m.cc
 
 $O/%.o: %.cc $(COPTS_FILE) | msgheaders smheaders
 	@$(MKPATH) $(dir $@)

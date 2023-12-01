@@ -11,11 +11,16 @@ class Aplicacao : public cSimpleModule
   private:
     int cont = 0;
     int numero;
-    double valor = 1.99;
+    bool sink;
+    double temperature;
+    double moisture;
+    double air;
 
   protected:
     virtual void initialize() override;
     virtual void handleMessage(cMessage *msg) override;
+    virtual float randomNumber(int min, int max);
+    virtual void finish() override;
 };
 
 #endif

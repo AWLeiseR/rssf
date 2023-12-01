@@ -1,5 +1,5 @@
 ../out/clang-debug/src/Aplicacao.o: Aplicacao.cc Aplicacao.h \
-  /opt/omnet6/include/omnetpp.h Pacote_m.h \
+  C:/omnetpp6/include/omnetpp.h Pacote_m.h \
   ../../inet4.5/src/inet/common/packet/Packet_m.h \
   ../../inet4.5/src/inet/common/INETDefs_m.h \
   ../../inet4.5/src/inet/common/INETDefs.h \
@@ -50,7 +50,7 @@
 
 Aplicacao.h:
 
-/opt/omnet6/include/omnetpp.h:
+C:/omnetpp6/include/omnetpp.h:
 
 Pacote_m.h:
 

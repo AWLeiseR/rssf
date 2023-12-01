@@ -30,7 +30,10 @@ class Pacote;
  * {
  *     int nodo_origem;
  *     int numero_msg;
- *     double valor;
+ *     //double valor;
+ *     double temperature;
+ *     double moisture;
+ *     double air;
  * }
  * </pre>
  */
@@ -39,7 +42,9 @@ class Pacote : public ::inet::Packet
   protected:
     int nodo_origem = 0;
     int numero_msg = 0;
-    double valor = 0;
+    double temperature = 0;
+    double moisture = 0;
+    double air = 0;
 
   private:
     void copy(const Pacote& other);
@@ -62,8 +67,14 @@ class Pacote : public ::inet::Packet
     virtual int getNumero_msg() const;
     virtual void setNumero_msg(int numero_msg);
 
-    virtual double getValor() const;
-    virtual void setValor(double valor);
+    virtual double getTemperature() const;
+    virtual void setTemperature(double temperature);
+
+    virtual double getMoisture() const;
+    virtual void setMoisture(double moisture);
+
+    virtual double getAir() const;
+    virtual void setAir(double air);
 };
 
 inline void doParsimPacking(omnetpp::cCommBuffer *b, const Pacote& obj) {obj.parsimPack(b);}
