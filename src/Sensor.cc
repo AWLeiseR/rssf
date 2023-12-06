@@ -2,10 +2,8 @@
 
 Define_Module(Sensor);
 
-void Sensor::initialize()
-{
+void Sensor::initialize(){
 }
 
-void Sensor::handleMessage(cMessage *msg)
-{
+void Sensor::handleMessage(cMessage *msg){
 }

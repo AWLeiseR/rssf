@@ -64,7 +64,7 @@ network rede02
             @display("p=90,45");
         }
          nodo18: Sensor {
-            @display("p=45,22.5");
+            @display("p=5,25");
         }
         connections allowunconnected:
 }

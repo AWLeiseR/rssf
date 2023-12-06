@@ -31,13 +31,13 @@ void Aplicacao::initialize(){
             pct->setNodo_origem(numero);
             pct->setNumero_msg(cont);
             pct->setTemperature(Aplicacao::randomNumber(23,29));
-            pct->setMoisture(moisture);
-            pct->setAir(air);
+            pct->setMoisture(Aplicacao::randomNumber(50,59));
+            pct->setAir(Aplicacao::randomNumber(40,60));
 
             auto enders = pct->addTag<inet::MacAddressReq>();
             enders->setDestAddress(inet::MacAddress::BROADCAST_ADDRESS);
             pct->addTag<inet::PacketProtocolTag>()->setProtocol(&inet::Protocol::unknown);
-            scheduleAt(simTime() + (Aplicacao::randomNumber(0,5)) , pct);
+            scheduleAt(simTime() + (Aplicacao::randomNumber(0,600)) , pct);
     }
 
 }
@@ -51,33 +51,25 @@ void Aplicacao::handleMessage(cMessage *msg){
         novo->setNumero_msg(cont);
 
         novo->setTemperature(Aplicacao::randomNumber(23,29));
-        novo->setMoisture(Aplicacao::randomNumber(40,80));
-        novo->setAir(Aplicacao::randomNumber(40,90));
+        novo->setMoisture(Aplicacao::randomNumber(50,59));
+        novo->setAir(Aplicacao::randomNumber(40,60));
 
         auto enders = novo->addTag<inet::MacAddressReq>();
         enders->setDestAddress(inet::MacAddress::BROADCAST_ADDRESS);
         novo->addTag<inet::PacketProtocolTag>()->setProtocol(&inet::Protocol::unknown);
-        scheduleAt(simTime()+2, novo);
+        scheduleAt(simTime()+600, novo);
     }else if(sink == true){
         Pacote *pct = check_and_cast<Pacote *>(msg);
         receivedPackages[pct->getNodo_origem()] = receivedPackages[pct->getNodo_origem()] + 1;
         EV << "*********** Nodo: " << numero << " Pacote recebido de "
                    << pct->getNodo_origem() << " numero: " << pct->getNumero_msg()
-                   << " Temperatura: " << pct->getTemperature() << "\n";
+                   << " Temperatura: " << pct->getTemperature() << " Umidade do solo: "
+                   << pct->getMoisture() << " Umidade relativa: " << pct->getAir() << "\n";
         delete(msg);
     }
-    /*else {
-
-        Pacote *pct = check_and_cast<Pacote *>(msg);
-        EV << "*********** Nodo: " << numero << " Pacote recebido de "
-           << pct->getNodo_origem() << " numero: " << pct->getNumero_msg()
-           << " Temperatura: " << pct->getTemperature() << "\n";
-        delete(msg);
-    }*/
 }
 void Aplicacao::finish(){
     if(sink == true){
-
         int i;
         for(i=0;i<18;i++){
             EV<<"Pacotes recebidos do Nodo "<<i<<": "<<receivedPackages[i]<<"\n";
